@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import FloatingStars from "./FloatingStars";
+import FloatingBalloons from "./FloatingBalloons";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-pink-900">
       <FloatingStars />
+      <FloatingBalloons />
       <div className="absolute inset-0 bg-black/20" />
 
       <motion.div
