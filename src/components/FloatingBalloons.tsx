@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { BALLOON_COUNT } from "@/constants/animation";
 
 interface Balloon {
   id: number;
@@ -24,7 +25,7 @@ export default function FloatingBalloons() {
   const [balloons, setBalloons] = useState<Balloon[]>([]);
 
   useEffect(() => {
-    const generated = Array.from({ length: 10 }, (_, index) => ({
+    const generated = Array.from({ length: BALLOON_COUNT }, (_, index) => ({
       id: index,
       left: Math.random() * 90,
       delay: Math.random() * 4,

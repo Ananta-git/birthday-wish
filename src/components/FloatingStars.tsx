@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import {
+  STAR_COUNT,
+  STAR_MIN_SIZE,
+  STAR_MAX_SIZE,
+  STAR_ANIMATION_DURATION,
+} from "@/constants/animation";
 
 interface Star {
   id: number;
@@ -16,11 +22,11 @@ export default function FloatingStars() {
 
   useEffect(() => {
     // Generate random positions only after the component mounts on the client
-    const generatedStars: Star[] = Array.from({ length: 40 }).map((_, index) => ({
+    const generatedStars: Star[] = Array.from({ length: STAR_COUNT }).map((_, index) => ({
       id: index,
       left: Math.random() * 100,
       top: Math.random() * 100,
-      size: Math.random() * 4 + 2,
+      size:Math.random() * (STAR_MAX_SIZE - STAR_MIN_SIZE) + STAR_MIN_SIZE,
       delay: Math.random() * 3,
     }));
 
@@ -47,7 +53,7 @@ if (!stars.length) return <></>;
             scale: [1, 1.8, 1],
           }}
           transition={{
-            duration: 2,
+            duration: STAR_ANIMATION_DURATION,
             delay: star.delay,
             repeat: Infinity,
             ease: "easeInOut",

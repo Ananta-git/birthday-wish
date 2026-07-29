@@ -1,12 +1,27 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import FloatingStars from "./FloatingStars";
 import FloatingBalloons from "./FloatingBalloons";
+import Countdown from "./Countdown";
+import ConfettiEffect from "./ConfettiEffect";
+import {birthday} from "@/data/birthday";
 
 export default function Hero() {
+  const [showCountdown, setShowCountdown] = useState(true);
+  const [celebrate, setCelebrate] = useState(false);
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-pink-900">
+      {showCountdown && (
+        <Countdown
+          onComplete={() => {
+            setShowCountdown(false);
+            setCelebrate(true);
+          }}
+        />
+      )}
+      {celebrate && <ConfettiEffect />}
       <FloatingStars />
       <FloatingBalloons />
       <div className="absolute inset-0 bg-black/20" />
@@ -23,7 +38,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-6xl md:text-8xl font-extrabold text-white"
         >
-          🎉 Happy Birthday
+          {birthday.title}
         </motion.h1>
 
         <motion.h2
@@ -32,7 +47,7 @@ export default function Hero() {
           transition={{ delay: 1 }}
           className="mt-4 text-4xl md:text-6xl font-bold text-pink-300"
         >
-          Her Name ❤️
+          {birthday.name} ❤️
         </motion.h2>
 
         <motion.p
@@ -41,7 +56,7 @@ export default function Hero() {
           transition={{ delay: 1.5 }}
           className="mt-8 text-lg md:text-2xl text-gray-200"
         >
-          Wishing you endless happiness, love, and beautiful memories.
+          {birthday.message}
         </motion.p>
       </motion.div>
     </section>

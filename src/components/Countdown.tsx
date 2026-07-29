@@ -11,9 +11,13 @@ export default function Countdown({ onComplete }: CountdownProps) {
   const [count, setCount] = useState(3);
 
   useEffect(() => {
+    // When reaching zero, pause briefly to show "🎉" then complete
     if (count === 0) {
-      onComplete();
-      return;
+      const completionTimer = setTimeout(() => {
+        onComplete();
+      }, 1000);
+
+      return () => clearTimeout(completionTimer);
     }
 
     const timer = setTimeout(() => {
@@ -24,7 +28,7 @@ export default function Countdown({ onComplete }: CountdownProps) {
   }, [count, onComplete]);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center z-50">
+    <div className="absolute inset-0 flex items-center justify-center z-50 bg-black/40 backdrop-blur-sm">
       <AnimatePresence mode="wait">
         <motion.div
           key={count}
@@ -32,7 +36,7 @@ export default function Countdown({ onComplete }: CountdownProps) {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 2, opacity: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-8xl font-black text-white"
+          className="text-8xl font-black text-white drop-shadow-lg"
         >
           {count > 0 ? count : "🎉"}
         </motion.div>
