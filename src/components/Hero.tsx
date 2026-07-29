@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import FloatingStars from "./FloatingStars";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-pink-900">
+      <FloatingStars />
       <div className="absolute inset-0 bg-black/20" />
 
       <motion.div
