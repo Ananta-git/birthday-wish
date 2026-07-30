@@ -7,6 +7,7 @@ import FloatingBalloons from "./FloatingBalloons";
 import Countdown from "./Countdown";
 import ConfettiEffect from "./ConfettiEffect";
 import {birthday} from "@/data/birthday";
+import BirthdayCake from "./BirthdayCake";
 
 export default function Hero() {
   const [showCountdown, setShowCountdown] = useState(true);
@@ -58,6 +59,7 @@ export default function Hero() {
         >
           {birthday.message}
         </motion.p>
+        <BirthdayCake show={celebrate} />
       </motion.div>
     </section>
   );
