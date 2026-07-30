@@ -59,7 +59,9 @@ export default function Hero() {
         >
           {birthday.message}
         </motion.p>
-        <BirthdayCake show={celebrate} />
+        <div className="mt-16">
+          <BirthdayCake show={celebrate} />
+        </div>
       </motion.div>
     </section>
   );
